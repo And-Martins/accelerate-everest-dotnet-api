@@ -1,4 +1,6 @@
 
+using CustomerRegister.Repositories.Interfaces;
+
 namespace CustomerRegister
 {
     public class Program
@@ -13,7 +15,8 @@ namespace CustomerRegister
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddSingleton<ICustomerRegister, CustomerRegister>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

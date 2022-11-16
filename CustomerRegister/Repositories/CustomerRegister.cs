@@ -1,6 +1,6 @@
 ﻿using CustomerRegister.Repositories.Interfaces;
 
-namespace CustomerRegister.Repositories
+namespace CustomerRegister
 {
     public class CustomerRegister : ICustomerRegister
 
@@ -34,27 +34,27 @@ namespace CustomerRegister.Repositories
             return _customers;
         }
 
-        public CustomerEntity? SearchCustomerById(int id)
-        {
-            return _customers.FirstOrDefault(x => x.Id == id);
-        }
+        //public CustomerEntity? SearchCustomerById(int id)
+        //{
+        //    return _customers.FirstOrDefault(x => x.Id == id) ?? null;
+        //}
 
-        public bool UpdateCustomer(CustomerEntity selectedCustomer, int id)
+        public int UpdateCustomer(CustomerEntity selectedCustomer, int id)
         {
             int index = _customers.FindIndex(customer=>customer.Id == id);
-            if (index == -1) return false;
-            else if (Exists(selectedCustomer))
+            if (index == -1) return -1;
+            if (!Exists(selectedCustomer))
             {
                 _customers[index].Id= id;
                 _customers[index] = selectedCustomer;
-                return true;
+                return 0;
             }
+            selectedCustomer.Id = _customers[index].Id;
+            _customers[index] = selectedCustomer;
+            return 1;
         }
 
-        bool ICustomerRegister.AddCustomer(CustomerEntity customer)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         //    private readonly RegisterDBContext _dbContext;
         //    public CustomerRegister(RegisterDBContext registerDBContext)

@@ -3,9 +3,9 @@
     public interface ICustomerRegister
     {
         List<CustomerEntity> SearchAllCustomers();
-        CustomerEntity SearchCustomerById(int id);
+        //CustomerEntity SearchCustomerById(int id);
         bool AddCustomer(CustomerEntity customer);
-        bool UpdateCustomer(CustomerEntity customer, int id);
+        int UpdateCustomer(CustomerEntity customer, int id);
         bool DeleteCustomer(int id);
 
     }
