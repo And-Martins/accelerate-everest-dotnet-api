@@ -17,13 +17,6 @@ namespace CustomerRegister.Controllers
             _customer = customer ?? throw new ArgumentException(nameof(customer));
         }
 
-        [HttpGet]
-        public ActionResult<List<CustomerEntity>> SearchAllCustomers()
-        {
-            var response = _customer.SearchAllCustomers();
-            return response;
-        }
-
         [HttpPost]
         public ActionResult Create([FromBody] CustomerEntity customer)
         {
@@ -33,13 +26,20 @@ namespace CustomerRegister.Controllers
                 : BadRequest("Email ou CPF já exitem");
         }
 
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult<List<CustomerEntity>> SearchAllCustomers()
         {
-            var response = _customer.DeleteCustomer(id);
-            return response
-                ? Ok()
-                : NotFound($"O usuário com id: {id} não foi encontrado");
+            var response = _customer.SearchAllCustomers();
+            return response;
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult SearchCustomerById(int id)
+        {
+            var response = _customer.SearchCustomerById(id);
+            return response is null 
+                ? NotFound($"Não foi encontrado usuário com Id : {id}")
+                : Ok(response);
         }
 
         [HttpPut("{id}")]
@@ -55,7 +55,16 @@ namespace CustomerRegister.Controllers
                 return BadRequest("Email e CPF já existem na nossa base de dados.");
             }
             return NotFound($"Não foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");
-        }   
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var response = _customer.DeleteCustomer(id);
+            return response
+                ? Ok()
+                : NotFound($"O usuário com id: {id} não foi encontrado");
+        }
 
     }
 }

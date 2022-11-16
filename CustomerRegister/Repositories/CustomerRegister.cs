@@ -34,10 +34,10 @@ namespace CustomerRegister
             return _customers;
         }
 
-        //public CustomerEntity? SearchCustomerById(int id)
-        //{
-        //    return _customers.FirstOrDefault(x => x.Id == id) ?? null;
-        //}
+        public CustomerEntity SearchCustomerById(int id)
+        {
+            return _customers.FirstOrDefault(x => x.Id == id) ?? null;
+        }
 
         public int UpdateCustomer(CustomerEntity selectedCustomer, int id)
         {
