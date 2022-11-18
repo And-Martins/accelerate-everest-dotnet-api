@@ -1,5 +1,3 @@
-﻿
-
 using CustomerRegister.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
