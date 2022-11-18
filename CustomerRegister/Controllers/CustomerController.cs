@@ -66,6 +66,5 @@ namespace CustomerRegister.Controllers
                 ? Ok()
                 : NotFound($"O usuário com id: {id} não foi encontrado");
         }
-
     }
 }
