@@ -4,7 +4,8 @@ using System;
 
 public class CustomerEntity : BaseEntity
     {
-        public CustomerEntity(string fullName,
+        public CustomerEntity(
+            string fullName,
             string email, 
             string emailConfirmation, 
             string cpf, 
@@ -16,7 +17,8 @@ public class CustomerEntity : BaseEntity
             string city,
             string postalCode,
             string address,
-            int addressNumber)
+            int addressNumber
+        )
         {
             FullName = fullName;
             Email = email;
