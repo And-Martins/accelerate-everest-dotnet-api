@@ -5,7 +5,6 @@ using System.Linq;
 namespace CustomerRegister
 {
     public class CustomerService : ICustomerService
-
     {
         private readonly List<CustomerEntity> _customers = new();
 
