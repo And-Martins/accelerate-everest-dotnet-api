@@ -1,6 +1,8 @@
-﻿namespace CustomerRegister.Repositories.Interfaces
+﻿using System.Collections.Generic;
+
+namespace CustomerRegister.Repositories.Interfaces
 {
-    public interface ICustomerRegister
+    public interface ICustomerService
     {
         List<CustomerEntity> SearchAllCustomers();
         CustomerEntity SearchCustomerById(int id);

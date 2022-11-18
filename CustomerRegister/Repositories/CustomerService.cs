@@ -1,8 +1,12 @@
-﻿using CustomerRegister.Repositories.Interfaces;
+﻿
+
+using CustomerRegister.Repositories.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CustomerRegister
 {
-    public class CustomerRegister : ICustomerRegister
+    public class CustomerService : ICustomerService
 
     {
         private readonly List<CustomerEntity> _customers = new();

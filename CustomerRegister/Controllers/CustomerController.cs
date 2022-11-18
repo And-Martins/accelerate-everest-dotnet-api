@@ -2,6 +2,8 @@
 using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace CustomerRegister.Controllers
 {
@@ -10,15 +12,15 @@ namespace CustomerRegister.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly ICustomerRegister _customer;
+        private readonly ICustomerService _customer;
 
-        public CustomerController(ICustomerRegister customer)
+        public CustomerController(ICustomerService customer)
         {
             _customer = customer ?? throw new ArgumentException(nameof(customer));
         }
 
         [HttpPost]
-        public ActionResult Create([FromBody] CustomerEntity customer)
+        public IActionResult Create([FromBody] CustomerEntity customer)
         {
             var response = _customer.AddCustomer(customer);
             return response
@@ -27,14 +29,14 @@ namespace CustomerRegister.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<CustomerEntity>> SearchAllCustomers()
+        public IActionResult SearchAllCustomers()
         {
             var response = _customer.SearchAllCustomers();
-            return response;
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public ActionResult SearchCustomerById(int id)
+        public IActionResult SearchCustomerById(int id)
         {
             var response = _customer.SearchCustomerById(id);
             return response is null 
@@ -43,7 +45,7 @@ namespace CustomerRegister.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateCustomer(CustomerEntity selectedCustomer, int id)
+        public IActionResult UpdateCustomer(CustomerEntity selectedCustomer, int id)
         {
             var response = _customer.UpdateCustomer(selectedCustomer, id);
             if(response > 1)

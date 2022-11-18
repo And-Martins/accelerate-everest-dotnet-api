@@ -1,16 +1,60 @@
 ﻿using FluentValidation;
+using System.Linq;
 
 namespace CustomerRegister
 {
     public class CustomerValidations : AbstractValidator<CustomerEntity>
     {
         public CustomerValidations() {
+            RuleFor(x => x.FullName).
+                NotNull().
+                NotEmpty();
+
+            RuleFor(x => x.Email).
+                NotEqual("").
+                NotEmpty().
+                MinimumLength(4).
+                EmailAddress().Equal(x => x.EmailConfirmation);
+
             RuleFor(x => x.Cpf).
                 NotEqual(" ").
                 NotEmpty().
                 Length(11).
                 Must(IsValidCpf).WithMessage("Por favor insira um CPF válido, este CPF está incorreto");
+
+            RuleFor(x => x.Cellphone).
+                NotEqual("").
+                NotEmpty();
+
+            RuleFor(x => x.DataOfBirth).           
+                NotEmpty();
+
+            RuleFor(x => x.EmailSms).
+                NotEmpty();
+
+            RuleFor(x => x.Whatsapp).
+                NotEmpty();
+
+            RuleFor(x => x.Country).
+                NotEqual("").
+                NotEmpty();
+
+            RuleFor(x => x.City).
+                NotEqual("").
+                NotEmpty();
+
+            RuleFor(x => x.PostalCode).
+                NotEqual("").
+                NotEmpty();
+
+            RuleFor(x => x.Address).
+                NotEqual("").
+                NotEmpty();
+
+            RuleFor(x => x.AddressNumber).
+                NotEmpty();
         }
+
         bool IsValidCpf(string cpf)
         {
 
