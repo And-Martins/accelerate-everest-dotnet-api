@@ -26,8 +26,11 @@ namespace CustomerRegister
         public bool AddCustomer(CustomerEntity customer)
         {
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
+
             if (Exists(customer)) return false;
+
             if(DuplicatedRegister(customer)) return false;
+
             _customers.Add(customer);
             return true;
         }
