@@ -35,7 +35,9 @@ namespace CustomerRegister
         public bool DeleteCustomer(int id)
         {
             int index = _customers.FindIndex(customer => customer.Id == id);
+
             if(index == -1) return false;
+
             _customers.RemoveAt(index);
             return true;
         }
