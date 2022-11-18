@@ -1,4 +1,3 @@
-﻿
 using CustomerRegister.Models;
 using System;
 
