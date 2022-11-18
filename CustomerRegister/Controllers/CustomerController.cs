@@ -12,7 +12,7 @@ namespace CustomerRegister.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly ICustomerService _customer;
+        private readonly ICustomerService _customerService;
 
         public CustomerController(ICustomerService customer)
         {
