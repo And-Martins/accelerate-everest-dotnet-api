@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 namespace CustomerRegister.Controllers
 {
-    
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
