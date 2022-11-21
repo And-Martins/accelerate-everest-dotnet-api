@@ -37,7 +37,6 @@ namespace CustomerRegister
                 else
                 {
                     _customers.Add(customer);
-
                 }
             }
         }
