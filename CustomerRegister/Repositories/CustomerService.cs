@@ -15,7 +15,8 @@ namespace CustomerRegister
 
         public bool Exists(CustomerEntity selectedCustomer)
         {
-            var response = _customers.Any(customer => customer.Cpf == selectedCustomer.Cpf || customer.Email == selectedCustomer.Email) && (selectedCustomer.Id != selectedCustomer.Id);
+            var response = _customers
+                .Any(customer => customer.Cpf == selectedCustomer.Cpf || customer.Email == selectedCustomer.Email) && (selectedCustomer.Id != selectedCustomer.Id);
             return response;
         }
 
@@ -36,7 +37,7 @@ namespace CustomerRegister
             {
                 if (DuplicatedRegister(customer))
                 {
-                    throw new BadRequestException("Email ou CPF j· exitem");
+                    throw new BadRequestException("Email ou CPF j√° exitem");
                 }
                 else
                 {
@@ -52,7 +53,7 @@ namespace CustomerRegister
 
             if (index == -1)
             {
-                throw new BadRequestException($"O usu·rio com id: {id} n„o foi encontrado");
+                throw new BadRequestException($"O usu√°rio com id: {id} n√£o foi encontrado");
             }
             else
             {
@@ -68,7 +69,7 @@ namespace CustomerRegister
         public CustomerEntity SearchCustomerById(int id)
         {
             return _customers.FirstOrDefault(x => x.Id == id) ?? 
-                throw new BadRequestException($"N„o foi encontrado usu·rio com Id : {id}");
+                throw new BadRequestException($"N√£o foi encontrado usu√°rio com Id : {id}");
         }
 
         public void UpdateCustomer (CustomerEntity selectedCustomer, int id)
@@ -76,7 +77,7 @@ namespace CustomerRegister
             var updateCustomer = SearchCustomerById(selectedCustomer.Id);
             if(updateCustomer == null)
             {
-                throw new BadRequestException($"N„o foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");
+                throw new BadRequestException($"N√£o foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");
             }
 
             if (DuplicatedRegister(selectedCustomer))
@@ -86,7 +87,7 @@ namespace CustomerRegister
             }
             else
             {
-            throw new BadRequestException("Email e CPF j· existem na nossa base de dados.");
+            throw new BadRequestException("Email e CPF j√° existem na nossa base de dados.");
             }
         }
     }
