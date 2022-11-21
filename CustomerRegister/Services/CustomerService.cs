@@ -43,8 +43,9 @@ namespace CustomerRegister
 
         public void Delete(int id)
         {
-            if (GetCustomerById(id) is not null){
-            _customers.Remove(GetCustomerById(id));
+            var selectedCustomer = GetCustomerById(id);
+            if (selectedCustomer is not null){
+            _customers.Remove(selectedCustomer);
             }
         }
 
