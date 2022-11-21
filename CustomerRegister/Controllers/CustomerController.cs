@@ -51,11 +51,11 @@ namespace CustomerRegister.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(CustomerEntity selectedCustomer)
+        public IActionResult UpdateCustomer(CustomerEntity selectedCustomer, int id)
         {
             try
             {
-                _customerService.Update(selectedCustomer);
+                _customerService.Update(selectedCustomer, id);
                 return Ok();
             }
             catch (NotFoundException e)
