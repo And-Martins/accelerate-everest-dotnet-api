@@ -64,7 +64,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Update(selectedCustomer);
                 return Ok();
             }
-            catch (NotFoundException e)
+            catch (ArgumentException e)
             {
                 return NotFound(e.Message);
             }
@@ -78,7 +78,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Delete(id);
                 return Ok();
             }
-            catch (NotFoundException e)
+            catch (ArgumentException e)
             {
                 return NotFound(e.Message);
             }          

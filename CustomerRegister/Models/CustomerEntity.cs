@@ -22,14 +22,14 @@ public class CustomerEntity : IEntity
         FullName = fullName;
         Email = email;
         EmailConfirmation = emailConfirmation;
-        Cpf = cpf;
-        Cellphone = cellphone;
+        Cpf = cpf.FormatCpf();
+        Cellphone = cellphone.FormatCellphone();
         DataOfBirth = dataOfBirth;
         EmailSms = emailSms;
         Whatsapp = whatsapp;
         Country = country;
         City = city;
-        PostalCode = postalCode;
+        PostalCode = postalCode.FormatPostalCode();
         Address = address;
         AddressNumber = addressNumber;
     }
