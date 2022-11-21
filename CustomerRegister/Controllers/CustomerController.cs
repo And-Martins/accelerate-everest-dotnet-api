@@ -1,6 +1,5 @@
 ﻿using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
 using System;
 
 namespace CustomerRegister.Controllers

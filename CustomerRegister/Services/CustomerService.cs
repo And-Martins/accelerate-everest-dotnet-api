@@ -4,17 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace CustomerRegister
 {
     public class CustomerService : ICustomerService
     {
         private readonly List<CustomerEntity> _customers = new();
 
-        public bool Exists(CustomerEntity selectedCustomer)
+        public bool ExistsID(CustomerEntity selectedCustomer)
         {
             var response = _customers
-                .Any(customer => customer.Cpf == selectedCustomer.Cpf || customer.Email == selectedCustomer.Email) && (selectedCustomer.Id != selectedCustomer.Id);
+                .Any(customer => customer.Id != selectedCustomer.Id);
             return response;
         }
 
@@ -34,7 +33,7 @@ namespace CustomerRegister
         {
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
 
-            if (!Exists(customer))
+            if (!ExistsID(customer))
             {
                 DuplicatedCPF(customer);
                 DuplicatedEmail(customer);

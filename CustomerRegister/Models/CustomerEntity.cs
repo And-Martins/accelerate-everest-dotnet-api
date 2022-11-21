@@ -1,6 +1,5 @@
 using CustomerRegister.Models;
 using System;
-
 public class CustomerEntity : IEntity
 {
     public CustomerEntity(

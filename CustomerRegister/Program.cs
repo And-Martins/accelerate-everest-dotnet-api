@@ -26,8 +26,6 @@ using Microsoft.Extensions.Hosting;
 
         app.UseAuthorization();
 
-
         app.MapControllers();
 
         app.Run();
-  
