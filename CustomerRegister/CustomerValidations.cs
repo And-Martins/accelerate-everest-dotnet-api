@@ -7,7 +7,6 @@ namespace CustomerRegister
     {
         public CustomerValidations() {
             RuleFor(x => x.FullName).
-                NotNull().
                 NotEmpty();
 
             RuleFor(x => x.Email).
