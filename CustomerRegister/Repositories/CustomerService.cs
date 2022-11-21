@@ -23,9 +23,8 @@ namespace CustomerRegister
         public bool DuplicatedRegister(CustomerEntity selectedCustomer)
         {
             if(_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf || customer.Email == selectedCustomer.Email))
-                {
                 return true;
-                }
+
             return false;
         }
 
