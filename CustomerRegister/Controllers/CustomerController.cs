@@ -76,7 +76,7 @@ namespace CustomerRegister.Controllers
             try
             {
                 _customerService.Delete(id);
-                return Ok();
+                return NoContent();
             }
             catch (ArgumentException e)
             {
