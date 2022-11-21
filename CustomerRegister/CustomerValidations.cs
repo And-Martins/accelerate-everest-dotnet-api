@@ -64,14 +64,12 @@ namespace CustomerRegister
             }
 
             resto = soma % 11;
+
             if (resto < 2)
-            {
                 resto = 0;
-            }
             else
-            {
                 resto = 11 - resto;
-            }
+                
             digito = resto.ToString();
 
             tempCpf = tempCpf + digito;
