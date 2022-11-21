@@ -51,7 +51,7 @@ namespace CustomerRegister
             }
             else
             {
-            _customers.RemoveAt(id);
+            _customers.RemoveAt(id-1);
             }
         }
 
