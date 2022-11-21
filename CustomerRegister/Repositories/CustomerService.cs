@@ -26,16 +26,22 @@ namespace CustomerRegister
             return false;
         }
 
-        public int AddCustomer(CustomerEntity customer)
+        public void AddCustomer(CustomerEntity customer)
         {
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
 
-            if (Exists(customer)) return 0;
+            if (!Exists(customer))
+            {
+                if (DuplicatedRegister(customer))
+                {
+                    throw new BadRequestException("Email ou CPF já exitem");
+                }
+                else
+                {
+                    _customers.Add(customer);
 
-            if(DuplicatedRegister(customer)) return 0;
-
-            _customers.Add(customer);
-            return customer.Id;
+                }
+            }
         }
 
         public bool DeleteCustomer(int id)

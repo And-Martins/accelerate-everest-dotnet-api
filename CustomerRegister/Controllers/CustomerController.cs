@@ -22,10 +22,15 @@ namespace CustomerRegister.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CustomerEntity customer)
         {
-            var response = _customerService.AddCustomer(customer);
-            return response > 1
-                ? Created("", customer.Id)
-                : BadRequest("Email ou CPF já exitem");
+            try
+            {
+                _customerService.AddCustomer(customer);
+                return Created("", customer.Id);
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         [HttpGet]
