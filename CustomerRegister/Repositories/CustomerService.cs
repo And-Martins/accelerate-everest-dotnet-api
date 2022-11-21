@@ -28,7 +28,7 @@ namespace CustomerRegister
             return false;
         }
 
-        public void AddCustomer(CustomerEntity customer)
+        public void Add(CustomerEntity customer)
         {
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
 
@@ -46,7 +46,7 @@ namespace CustomerRegister
             }
         }
 
-        public void DeleteCustomer(int id)
+        public void Delete(int id)
         {
             int index = _customers.FindIndex(customer => customer.Id == id);
 
@@ -60,20 +60,20 @@ namespace CustomerRegister
             }
         }
 
-        public List<CustomerEntity> SearchAllCustomers()
+        public List<CustomerEntity> GetAllCustomers()
         {
             return _customers;
         }
 
-        public CustomerEntity SearchCustomerById(int id)
+        public CustomerEntity GetCustomerById(int id)
         {
             return _customers.FirstOrDefault(x => x.Id == id) ?? 
                 throw new BadRequestException($"Não foi encontrado usuário com Id : {id}");
         }
 
-        public void UpdateCustomer (CustomerEntity selectedCustomer, int id)
+        public void Update (CustomerEntity selectedCustomer, int id)
         {
-            var updateCustomer = SearchCustomerById(selectedCustomer.Id);
+            var updateCustomer = GetCustomerById(selectedCustomer.Id);
             if(updateCustomer == null)
             {
                 throw new BadRequestException($"Não foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");

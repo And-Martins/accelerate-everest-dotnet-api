@@ -24,7 +24,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.AddCustomer(customer);
+                _customerService.Add(customer);
                 return Created("", customer.Id);
             }
             catch (NotFoundException e)
@@ -34,18 +34,18 @@ namespace CustomerRegister.Controllers
         }
 
         [HttpGet]
-        public IActionResult SearchAllCustomers()
+        public IActionResult GetAllCustomers()
         {
-            var response = _customerService.SearchAllCustomers();
+            var response = _customerService.GetAllCustomers();
             return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public IActionResult SearchCustomerById(int id)
+        public IActionResult GetCustomerById(int id)
         {
             try
             {
-                return Ok(_customerService.SearchCustomerById(id));
+                return Ok(_customerService.GetCustomerById(id));
             }
             catch (NotFoundException e)
             {
@@ -58,7 +58,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.UpdateCustomer(selectedCustomer, id);
+                _customerService.Update(selectedCustomer, id);
                 return Ok();
             }
             catch (NotFoundException e)
@@ -72,7 +72,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.DeleteCustomer(id);
+                _customerService.Delete(id);
                 return Ok();
             }
             catch (NotFoundException e)
