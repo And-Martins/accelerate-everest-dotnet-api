@@ -49,7 +49,7 @@ namespace CustomerRegister
             }
         }
 
-        public List<CustomerEntity> GetAllCustomers()
+        public IEnumerable<CustomerEntity> GetAllCustomers()
         {
             return _customers;
         }
