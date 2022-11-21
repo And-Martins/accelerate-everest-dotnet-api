@@ -62,12 +62,11 @@ namespace CustomerRegister
 
         public void Update (CustomerEntity selectedCustomer)
         {
-            GetCustomerById(selectedCustomer.Id);
+            var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
             {
                 DuplicatedCPF(selectedCustomer);
                 DuplicatedEmail(selectedCustomer);
                 
-                var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
                     _customers[index] = selectedCustomer;
             }
         }
