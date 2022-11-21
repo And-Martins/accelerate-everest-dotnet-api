@@ -67,7 +67,7 @@ namespace CustomerRegister
                 throw new BadRequestException($"Não foi encontrado usuário com Id : {id}");
         }
 
-        public void Update (CustomerEntity selectedCustomer, int id)
+        public void Update (CustomerEntity selectedCustomer)
         {
             var updateCustomer = GetCustomerById(selectedCustomer.Id);
             if(updateCustomer == null)
