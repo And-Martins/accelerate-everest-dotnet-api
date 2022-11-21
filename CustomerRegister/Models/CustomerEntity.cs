@@ -3,7 +3,7 @@ using System;
 
 public class CustomerEntity : IEntity
     {
-        public CustomerEntity(
+    public CustomerEntity(
             string fullName,
             string email, 
             string emailConfirmation, 
@@ -47,4 +47,5 @@ public class CustomerEntity : IEntity
         public string PostalCode { get; set; }
         public string Address { get; set; }
         public int AddressNumber { get; set; }
-    }
+    public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+}

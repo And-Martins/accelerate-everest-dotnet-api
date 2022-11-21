@@ -1,3 +1,4 @@
+using CustomerRegister;
 using CustomerRegister.Repositories.Interfaces;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,3 @@ using Microsoft.Extensions.Hosting;
             app.MapControllers();
 
             app.Run();
-        }
-    }
-}

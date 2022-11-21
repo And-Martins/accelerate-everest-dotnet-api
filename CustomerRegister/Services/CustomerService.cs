@@ -44,15 +44,14 @@ namespace CustomerRegister
 
         public void Delete(int id)
         {
-            int index = _customers.FindIndex(customer => customer.Id == id);
-
-            if (index == -1)
+            var index = GetCustomerById(id);
+            if (index == null)
             {
                 throw new BadRequestException($"O usuário com id: {id} não foi encontrado");
             }
             else
             {
-            _customers.RemoveAt(index);
+            _customers.RemoveAt(id);
             }
         }
 
