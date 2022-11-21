@@ -37,9 +37,9 @@ namespace CustomerRegister.Controllers
             {
                 var response = _customerService.GetAllCustomers();
                 return Ok(response);
-            } catch (NotFoundException e)
+            } catch (NotFoundException)
             {
-                return NoContent(e.Message);
+                return NoContent();
             }
         }
 
