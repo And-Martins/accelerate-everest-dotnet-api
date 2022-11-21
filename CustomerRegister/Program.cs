@@ -14,7 +14,6 @@ using Microsoft.Extensions.Hosting;
             builder.Services.AddScoped<IValidator<CustomerEntity>, CustomerValidatons>
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
