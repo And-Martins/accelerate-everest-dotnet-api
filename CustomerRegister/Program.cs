@@ -1,10 +1,8 @@
 using CustomerRegister.Repositories.Interfaces;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 
 namespace CustomerRegister
 {

@@ -1,8 +1,4 @@
 using CustomerRegister.Repositories.Interfaces;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.IdentityModel.SecurityTokenService;
-using SendGrid.Helpers.Errors.Model;
 using System.Collections.Generic;
 using System.Linq;
 using BadRequestException = SendGrid.Helpers.Errors.Model.BadRequestException;

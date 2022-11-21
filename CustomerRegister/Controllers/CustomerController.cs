@@ -1,10 +1,7 @@
-﻿using CustomerRegister.Models;
-using CustomerRegister.Repositories.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using SendGrid.Helpers.Errors.Model;
 using System;
-using System.Collections.Generic;
 
 namespace CustomerRegister.Controllers
 {
