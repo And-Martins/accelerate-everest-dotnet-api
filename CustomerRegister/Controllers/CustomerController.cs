@@ -22,7 +22,7 @@ namespace CustomerRegister.Controllers
             try
             {
                 _customerService.Add(customer);
-                return Created("", customer.Id);
+                return Created("Id: ", customer.Id);
             }
             catch (ArgumentException e)
             {
