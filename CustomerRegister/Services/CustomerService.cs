@@ -70,7 +70,6 @@ namespace CustomerRegister
                 var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
                     _customers[index] = selectedCustomer;
             }
-
         }
     }
 }
