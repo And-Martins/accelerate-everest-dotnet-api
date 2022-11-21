@@ -1,7 +1,7 @@
 using CustomerRegister.Models;
 using System;
 
-public class CustomerEntity : BaseEntity
+public class CustomerEntity : IEntity
     {
         public CustomerEntity(
             string fullName,
