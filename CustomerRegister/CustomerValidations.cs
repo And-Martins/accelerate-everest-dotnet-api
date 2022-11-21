@@ -10,19 +10,15 @@ namespace CustomerRegister
                 NotEmpty();
 
             RuleFor(x => x.Email).
-                NotEqual("").
                 NotEmpty().
                 MinimumLength(4).
                 EmailAddress().Equal(x => x.EmailConfirmation);
 
             RuleFor(x => x.Cpf).
-                NotEqual(" ").
                 NotEmpty().
-                Length(11).
                 Must(IsValidCpf).WithMessage("Por favor insira um CPF válido, este CPF está incorreto");
 
             RuleFor(x => x.Cellphone).
-                NotEqual("").
                 NotEmpty();
 
             RuleFor(x => x.DataOfBirth).           
@@ -35,19 +31,15 @@ namespace CustomerRegister
                 NotEmpty();
 
             RuleFor(x => x.Country).
-                NotEqual("").
                 NotEmpty();
 
             RuleFor(x => x.City).
-                NotEqual("").
                 NotEmpty();
 
             RuleFor(x => x.PostalCode).
-                NotEqual("").
                 NotEmpty();
 
             RuleFor(x => x.Address).
-                NotEqual("").
                 NotEmpty();
 
             RuleFor(x => x.AddressNumber).
