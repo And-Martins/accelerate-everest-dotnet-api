@@ -6,8 +6,8 @@ namespace CustomerRegister.Repositories.Interfaces
     {
         List<CustomerEntity> SearchAllCustomers();
         CustomerEntity SearchCustomerById(int id);
-        bool AddCustomer(CustomerEntity customer);
-        int UpdateCustomer(CustomerEntity customer, int id);
+        int AddCustomer(CustomerEntity customer);
+        void UpdateCustomer(CustomerEntity customer, int id);
         bool DeleteCustomer(int id);
 
     }

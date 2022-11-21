@@ -2,6 +2,7 @@
 using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SendGrid.Helpers.Errors.Model;
 using System;
 using System.Collections.Generic;
 
@@ -22,7 +23,7 @@ namespace CustomerRegister.Controllers
         public IActionResult Create([FromBody] CustomerEntity customer)
         {
             var response = _customerService.AddCustomer(customer);
-            return response
+            return response > 1
                 ? Created("", customer.Id)
                 : BadRequest("Email ou CPF já exitem");
         }
@@ -46,16 +47,15 @@ namespace CustomerRegister.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateCustomer(CustomerEntity selectedCustomer, int id)
         {
-            var response = _customerService.UpdateCustomer(selectedCustomer, id);
-            if(response > 1)
+            try
             {
+                _customerService.UpdateCustomer(selectedCustomer, id);
                 return Ok();
             }
-            else if (response == 0)
+            catch (NotFoundException e)
             {
-                return BadRequest("Email e CPF já existem na nossa base de dados.");
+                return NotFound(e.Message);
             }
-            return NotFound($"Não foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");
         }
 
         [HttpDelete("{id}")]

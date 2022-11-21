@@ -1,4 +1,7 @@
 using CustomerRegister.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.IdentityModel.SecurityTokenService;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -55,21 +58,23 @@ namespace CustomerRegister
             return _customers.FirstOrDefault(x => x.Id == id) ?? null;
         }
 
-        public int UpdateCustomer(CustomerEntity selectedCustomer, int id)
+        public void UpdateCustomer (CustomerEntity selectedCustomer, int id)
         {
             var updateCustomer = SearchCustomerById(selectedCustomer.Id);
             if(updateCustomer == null)
             {
-                return -1;
+                throw new BadRequestException($"Não foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");
             }
 
             if (DuplicatedRegister(selectedCustomer))
             {
                 var index = _customers.IndexOf(updateCustomer);
                 _customers[index] = selectedCustomer;
-                return index;
             }
-            return 0;   
+            else
+            {
+            throw new BadRequestException("Email e CPF já existem na nossa base de dados.");
+            }
         }
     }
 }
