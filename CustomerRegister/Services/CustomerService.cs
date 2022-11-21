@@ -1,4 +1,5 @@
 using CustomerRegister.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using System.Collections.Generic;
 using System.Linq;
 using BadRequestException = SendGrid.Helpers.Errors.Model.BadRequestException;
@@ -16,12 +17,16 @@ namespace CustomerRegister
             return response;
         }
 
-        public bool DuplicatedRegister(CustomerEntity selectedCustomer)
+        public void DuplicatedEmail(CustomerEntity selectedCustomer)
         {
-            if(_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf || customer.Email == selectedCustomer.Email))
-                return true;
+            if(_customers.Any(customer => customer.Email == selectedCustomer.Email))
+                throw new BadRequestException("Este email já está em uso, por favor escolha outro");
+        }
 
-            return false;
+        public void DuplicatedCPF(CustomerEntity selectedCustomer)
+        {
+            if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
+                throw new BadRequestException("Este CPF já está em uso, por favor escolha outro");
         }
 
         public void Add(CustomerEntity customer)
@@ -30,15 +35,11 @@ namespace CustomerRegister
 
             if (!Exists(customer))
             {
-                if (DuplicatedRegister(customer))
-                {
-                    throw new BadRequestException("Email ou CPF já exitem");
-                }
-                else
-                {
-                    _customers.Add(customer);
+                DuplicatedCPF(customer);
+                DuplicatedEmail(customer);
+                _customers.Add(customer);
 
-                }
+              
             }
         }
 
@@ -62,21 +63,15 @@ namespace CustomerRegister
 
         public void Update (CustomerEntity selectedCustomer)
         {
-            var updateCustomer = GetCustomerById(selectedCustomer.Id);
-            if(updateCustomer == null)
+            GetCustomerById(selectedCustomer.Id);
             {
-                throw new BadRequestException($"Não foi encontrado nenhum registro com este CPF: {selectedCustomer.Cpf}");
+                DuplicatedCPF(selectedCustomer);
+                DuplicatedEmail(selectedCustomer);
+                
+                var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
+                    _customers[index] = selectedCustomer;
             }
 
-            if (DuplicatedRegister(selectedCustomer))
-            {
-                var index = _customers.IndexOf(updateCustomer);
-                _customers[index] = selectedCustomer;
-            }
-            else
-            {
-            throw new BadRequestException("Email e CPF já existem na nossa base de dados.");
-            }
         }
     }
 }

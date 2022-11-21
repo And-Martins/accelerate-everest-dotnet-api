@@ -50,8 +50,8 @@ namespace CustomerRegister.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(CustomerEntity selectedCustomer, int id)
+        [HttpPut]
+        public IActionResult UpdateCustomer(CustomerEntity selectedCustomer)
         {
             try
             {

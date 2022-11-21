@@ -64,7 +64,6 @@ namespace CustomerRegister
             int soma;
             int resto;
 
-            if (cpf.Length != 11) return false;
             if (cpf.All(x => x == cpf.First())) return false;
 
             tempCpf = cpf.Substring(0, 9);

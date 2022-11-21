@@ -4,7 +4,7 @@ namespace CustomerRegister.Repositories.Interfaces
 {
     public interface ICustomerService
     {
-        List<CustomerEntity> GetAllCustomers();
+        IEnumerable<CustomerEntity> GetAllCustomers();
         CustomerEntity GetCustomerById(int id);
         void Add(CustomerEntity customer);
         void Update(CustomerEntity customer);
