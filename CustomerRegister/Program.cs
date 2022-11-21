@@ -9,8 +9,9 @@ using Microsoft.Extensions.Hosting;
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddSingleton<ICustomerService, CustomerService>()
-                .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<CustomerValidations>());
+            builder.Services.AddSingleton<ICustomerService, CustomerService>();
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddScoped<IValidator<CustomerEntity>, CustomerValidatons>
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
