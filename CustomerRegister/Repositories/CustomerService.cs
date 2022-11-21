@@ -2,8 +2,10 @@ using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.IdentityModel.SecurityTokenService;
+using SendGrid.Helpers.Errors.Model;
 using System.Collections.Generic;
 using System.Linq;
+using BadRequestException = SendGrid.Helpers.Errors.Model.BadRequestException;
 
 namespace CustomerRegister
 {
@@ -44,14 +46,18 @@ namespace CustomerRegister
             }
         }
 
-        public bool DeleteCustomer(int id)
+        public void DeleteCustomer(int id)
         {
             int index = _customers.FindIndex(customer => customer.Id == id);
 
-            if(index == -1) return false;
-
+            if (index == -1)
+            {
+                throw new BadRequestException($"O usuário com id: {id} não foi encontrado");
+            }
+            else
+            {
             _customers.RemoveAt(index);
-            return true;
+            }
         }
 
         public List<CustomerEntity> SearchAllCustomers()
@@ -61,7 +67,8 @@ namespace CustomerRegister
 
         public CustomerEntity SearchCustomerById(int id)
         {
-            return _customers.FirstOrDefault(x => x.Id == id) ?? null;
+            return _customers.FirstOrDefault(x => x.Id == id) ?? 
+                throw new BadRequestException($"Não foi encontrado usuário com Id : {id}");
         }
 
         public void UpdateCustomer (CustomerEntity selectedCustomer, int id)

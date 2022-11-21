@@ -43,10 +43,14 @@ namespace CustomerRegister.Controllers
         [HttpGet("{id}")]
         public IActionResult SearchCustomerById(int id)
         {
-            var response = _customerService.SearchCustomerById(id);
-            return response is null 
-                ? NotFound($"Não foi encontrado usuário com Id : {id}")
-                : Ok(response);
+            try
+            {
+                return Ok(_customerService.SearchCustomerById(id));
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
         [HttpPut("{id}")]
@@ -66,10 +70,15 @@ namespace CustomerRegister.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var response = _customerService.DeleteCustomer(id);
-            return response
-                ? Ok()
-                : NotFound($"O usuário com id: {id} não foi encontrado");
+            try
+            {
+                _customerService.DeleteCustomer(id);
+                return Ok();
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound(e.Message);
+            }          
         }
     }
 }

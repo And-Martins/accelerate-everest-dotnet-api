@@ -8,7 +8,7 @@ namespace CustomerRegister.Repositories.Interfaces
         CustomerEntity SearchCustomerById(int id);
         void AddCustomer(CustomerEntity customer);
         void UpdateCustomer(CustomerEntity customer, int id);
-        bool DeleteCustomer(int id);
+        void DeleteCustomer(int id);
 
     }
 }
