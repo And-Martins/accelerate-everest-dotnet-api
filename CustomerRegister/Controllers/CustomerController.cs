@@ -1,6 +1,6 @@
 ﻿using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using SendGrid.Helpers.Errors.Model;
+
 using System;
 
 namespace CustomerRegister.Controllers
@@ -24,7 +24,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Add(customer);
                 return Created("", customer.Id);
             }
-            catch (NotFoundException e)
+            catch (ArgumentException e)
             {
                 return NotFound(e.Message);
             }
@@ -37,7 +37,7 @@ namespace CustomerRegister.Controllers
             {
                 var response = _customerService.GetAllCustomers();
                 return Ok(response);
-            } catch (NotFoundException)
+            } catch (ArgumentException)
             {
                 return NoContent();
             }
@@ -50,7 +50,7 @@ namespace CustomerRegister.Controllers
             {
                 return Ok(_customerService.GetCustomerById(id));
             }
-            catch (NotFoundException e)
+            catch (ArgumentException e)
             {
                 return NotFound(e.Message);
             }

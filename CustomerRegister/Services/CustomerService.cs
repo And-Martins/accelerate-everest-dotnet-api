@@ -1,8 +1,9 @@
 using CustomerRegister.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http.HttpResults;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BadRequestException = SendGrid.Helpers.Errors.Model.BadRequestException;
+
 
 namespace CustomerRegister
 {
@@ -20,13 +21,13 @@ namespace CustomerRegister
         public void DuplicatedEmail(CustomerEntity selectedCustomer)
         {
             if(_customers.Any(customer => customer.Email == selectedCustomer.Email))
-                throw new BadRequestException("Este email já está em uso, por favor escolha outro");
+                throw new ArgumentException("Este email já está em uso, por favor escolha outro");
         }
 
         public void DuplicatedCPF(CustomerEntity selectedCustomer)
         {
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
-                throw new BadRequestException("Este CPF já está em uso, por favor escolha outro");
+                throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
         }
 
         public void Add(CustomerEntity customer)
@@ -38,8 +39,6 @@ namespace CustomerRegister
                 DuplicatedCPF(customer);
                 DuplicatedEmail(customer);
                 _customers.Add(customer);
-
-              
             }
         }
 
@@ -58,7 +57,7 @@ namespace CustomerRegister
         public CustomerEntity GetCustomerById(int id)
         {
             return _customers.FirstOrDefault(x => x.Id == id) ?? 
-                throw new BadRequestException($"Não foi encontrado usuário com Id : {id}");
+                throw new ArgumentException($"Não foi encontrado usuário com Id : {id}");
         }
 
         public void Update (CustomerEntity selectedCustomer)
