@@ -33,8 +33,14 @@ namespace CustomerRegister.Controllers
         [HttpGet]
         public IActionResult GetAllCustomers()
         {
-            var response = _customerService.GetAllCustomers();
-            return Ok(response);
+            try
+            {
+                var response = _customerService.GetAllCustomers();
+                return Ok(response);
+            } catch (NotFoundException e)
+            {
+                return NoContent(e.Message);
+            }
         }
 
         [HttpGet("{id}")]
