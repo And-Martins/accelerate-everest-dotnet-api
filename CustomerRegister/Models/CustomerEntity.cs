@@ -47,4 +47,5 @@ public class CustomerEntity : IEntity
     public string PostalCode { get; set; }
     public string Address { get; set; }
     public int AddressNumber { get; set; }
+    public int Id { get; set; }
 }

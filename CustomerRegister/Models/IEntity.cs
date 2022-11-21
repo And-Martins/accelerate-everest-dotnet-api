@@ -1,6 +1,6 @@
 ﻿namespace CustomerRegister.Models
 {
-    public abstract class IEntity
+    public interface IEntity
     {
         public int Id { get; set; }
     }
