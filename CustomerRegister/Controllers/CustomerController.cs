@@ -13,7 +13,7 @@ namespace CustomerRegister.Controllers
 
         public CustomerController(ICustomerService customer)
         {
-            _customerService = customer ?? throw new ArgumentException(nameof(customer));
+            _customerService = customer ?? throw new ArgumentNullException(nameof(customer));
         }
 
         [HttpPost]
@@ -24,7 +24,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Add(customer);
                 return Created("Id: ", customer.Id);
             }
-            catch (ArgumentException e)
+            catch (ArgumentNullException e)
             {
                 return BadRequest(e.Message);
             }
@@ -37,7 +37,7 @@ namespace CustomerRegister.Controllers
             {
                 var response = _customerService.GetAllCustomers();
                 return Ok(response);
-            } catch (ArgumentException)
+            } catch (ArgumentNullException)
             {
                 return NoContent();
             }
@@ -50,7 +50,7 @@ namespace CustomerRegister.Controllers
             {
                 return Ok(_customerService.GetCustomerById(id));
             }
-            catch (ArgumentException e)
+            catch (ArgumentNullException e)
             {
                 return NotFound(e.Message);
             }
@@ -64,7 +64,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Update(selectedCustomer);
                 return Ok();
             }
-            catch (ArgumentException e)
+            catch (ArgumentNullException e)
             {
                 return NotFound(e.Message);
             }
@@ -78,7 +78,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Delete(id);
                 return NoContent();
             }
-            catch (ArgumentException e)
+            catch (ArgumentNullException e)
             {
                 return NotFound(e.Message);
             }          
