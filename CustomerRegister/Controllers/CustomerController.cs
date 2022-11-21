@@ -55,7 +55,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.Update(selectedCustomer, id);
+                _customerService.Update(selectedCustomer);
                 return Ok();
             }
             catch (NotFoundException e)
