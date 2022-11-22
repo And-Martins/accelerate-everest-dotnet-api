@@ -27,8 +27,6 @@ namespace CustomerRegister
 
         public void Add(CustomerEntity customer)
         {
-            //customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
-
             ExistsID(customer);
             CustomerAlreadyExists(customer);
             _customers.Add(customer);
