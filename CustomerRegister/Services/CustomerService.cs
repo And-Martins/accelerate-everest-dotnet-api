@@ -49,11 +49,9 @@ namespace CustomerRegister
         public void Update(CustomerEntity selectedCustomer)
         {
             var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
-            {
-                CustomerAlreadyExists(selectedCustomer);
-
-                _customers[index] = selectedCustomer;
-            }
+            CustomerAlreadyExists(selectedCustomer);
+            _customers[index] = selectedCustomer;
+            
         }
     }
 }
