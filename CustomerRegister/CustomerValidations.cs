@@ -5,7 +5,8 @@ namespace CustomerRegister
 {
     public class CustomerValidations : AbstractValidator<CustomerEntity>
     {
-        public CustomerValidations() {
+        public CustomerValidations()
+        {
             RuleFor(x => x.FullName).
                 NotEmpty();
 
@@ -21,7 +22,7 @@ namespace CustomerRegister
             RuleFor(x => x.Cellphone).
                 NotEmpty();
 
-            RuleFor(x => x.DataOfBirth).           
+            RuleFor(x => x.DataOfBirth).
                 NotEmpty();
 
             RuleFor(x => x.Country).
@@ -66,7 +67,7 @@ namespace CustomerRegister
                 resto = 0;
             else
                 resto = 11 - resto;
-                
+
             digito = resto.ToString();
 
             tempCpf = tempCpf + digito;

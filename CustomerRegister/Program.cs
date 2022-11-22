@@ -5,27 +5,27 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-   
-        var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-        builder.Services.AddSingleton<ICustomerService, CustomerService>();
-        builder.Services.AddFluentValidationAutoValidation();
-        builder.Services.AddScoped<IValidator<CustomerEntity>, CustomerValidations>();
-        var app = builder.Build();
+var builder = WebApplication.CreateBuilder(args);
 
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<ICustomerService, CustomerService>();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<IValidator<CustomerEntity>, CustomerValidations>();
+var app = builder.Build();
 
-        app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-        app.UseAuthorization();
+app.UseHttpsRedirection();
 
-        app.MapControllers();
+app.UseAuthorization();
 
-        app.Run();
+app.MapControllers();
+
+app.Run();

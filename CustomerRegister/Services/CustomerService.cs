@@ -20,7 +20,7 @@ namespace CustomerRegister
         {
             if (_customers.Any(customer => customer.Email == selectedCustomer.Email))
                 throw new ArgumentException("Este email já está em uso, por favor escolha outro");
-                
+
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
         }
@@ -37,8 +37,9 @@ namespace CustomerRegister
         public void Delete(int id)
         {
             var selectedCustomer = GetCustomerById(id);
-            if (selectedCustomer is not null){
-            _customers.Remove(selectedCustomer);
+            if (selectedCustomer is not null)
+            {
+                _customers.Remove(selectedCustomer);
             }
         }
 
@@ -49,17 +50,17 @@ namespace CustomerRegister
 
         public CustomerEntity GetCustomerById(int id)
         {
-            return _customers.FirstOrDefault(x => x.Id == id) ?? 
+            return _customers.FirstOrDefault(x => x.Id == id) ??
                 throw new ArgumentNullException($"Não foi encontrado usuário com Id : {id}");
         }
 
-        public void Update (CustomerEntity selectedCustomer)
+        public void Update(CustomerEntity selectedCustomer)
         {
             var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
             {
                 CustomerAlreadyExists(selectedCustomer);
-                
-                    _customers[index] = selectedCustomer;
+
+                _customers[index] = selectedCustomer;
             }
         }
     }
