@@ -68,6 +68,10 @@ namespace CustomerRegister.Controllers
             {
                 return NotFound(e.Message);
             }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
