@@ -17,14 +17,11 @@ namespace CustomerRegister
             return response;
         }
 
-        public void DuplicatedEmail(CustomerEntity selectedCustomer)
+        private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
             if(_customers.Any(customer => customer.Email == selectedCustomer.Email))
                 throw new ArgumentException("Este email já está em uso, por favor escolha outro");
-        }
-
-        public void DuplicatedCPF(CustomerEntity selectedCustomer)
-        {
+                
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
         }
