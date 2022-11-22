@@ -10,16 +10,15 @@ namespace CustomerRegister
     {
         private readonly List<CustomerEntity> _customers = new();
 
-        public bool ExistsID(CustomerEntity selectedCustomer)
+        public void ExistsID(CustomerEntity selectedCustomer)
         {
-            var response = _customers
-                .Any(customer => customer.Id != selectedCustomer.Id);
-            return response;
+            if (_customers.Any(customer => customer.Id == selectedCustomer.Id))
+                throw new ArgumentException("Este Id já está em uso, por favor escolha outro");
         }
 
         private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
-            if(_customers.Any(customer => customer.Email == selectedCustomer.Email))
+            if (_customers.Any(customer => customer.Email == selectedCustomer.Email))
                 throw new ArgumentException("Este email já está em uso, por favor escolha outro");
                 
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
@@ -30,12 +29,9 @@ namespace CustomerRegister
         {
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
 
-            if (!ExistsID(customer))
-            {
-                DuplicatedCPF(customer);
-                DuplicatedEmail(customer);
-                _customers.Add(customer);
-            }
+            ExistsID(customer);
+            CustomerAlreadyExists(customer);
+            _customers.Add(customer);
         }
 
         public void Delete(int id)
@@ -61,8 +57,7 @@ namespace CustomerRegister
         {
             var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
             {
-                DuplicatedCPF(selectedCustomer);
-                DuplicatedEmail(selectedCustomer);
+                CustomerAlreadyExists(selectedCustomer);
                 
                     _customers[index] = selectedCustomer;
             }
