@@ -50,7 +50,7 @@ namespace CustomerRegister
         public CustomerEntity GetCustomerById(int id)
         {
             return _customers.FirstOrDefault(x => x.Id == id) ?? 
-                throw new ArgumentException($"Não foi encontrado usuário com Id : {id}");
+                throw new ArgumentNullException($"Não foi encontrado usuário com Id : {id}");
         }
 
         public void Update (CustomerEntity selectedCustomer)
