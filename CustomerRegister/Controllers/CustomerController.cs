@@ -36,7 +36,8 @@ namespace CustomerRegister.Controllers
             {
                 var response = _customerService.GetAllCustomers();
                 return Ok(response);
-            } catch (ArgumentNullException)
+            } 
+            catch
             {
                 return NoContent();
             }
