@@ -52,6 +52,8 @@ namespace CustomerRegister
             int resto;
 
             if (cpf.All(x => x == cpf.First())) return false;
+            cpf.FormatCpf();
+            if (cpf.Length > 11) return false;
 
             tempCpf = cpf.Substring(0, 9);
             soma = 0;
