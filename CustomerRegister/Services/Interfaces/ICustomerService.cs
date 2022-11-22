@@ -6,7 +6,7 @@ namespace CustomerRegister.Repositories.Interfaces
     {
         IEnumerable<CustomerEntity> GetAllCustomers();
         CustomerEntity GetCustomerById(int id);
-        void Add(CustomerEntity customer);
+        int Add(CustomerEntity customer);
         void Update(CustomerEntity customer);
         void Delete(int id);
 

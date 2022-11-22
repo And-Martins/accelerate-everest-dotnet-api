@@ -20,8 +20,8 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.Add(customer);
-                return Created("Id: ", customer.Id);
+                var customerId = _customerService.Add(customer);
+                return Created("Id: ", customerId);
             }
             catch (ArgumentException e)
             {

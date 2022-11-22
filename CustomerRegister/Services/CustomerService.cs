@@ -19,18 +19,18 @@ namespace CustomerRegister
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
         }
 
-        public void Add(CustomerEntity customer)
+        public int Add(CustomerEntity customer)
         {
             CustomerAlreadyExists(customer);
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
             _customers.Add(customer);
+            return customer.Id;
         }
 
         public void Delete(int id)
         {
            var selectedCustomer = GetCustomerById(id);
            _customers.Remove(selectedCustomer);
-
         }
 
         public IEnumerable<CustomerEntity> GetAllCustomers()
@@ -49,7 +49,6 @@ namespace CustomerRegister
             var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
             CustomerAlreadyExists(selectedCustomer);
             _customers[index] = selectedCustomer;
-            
         }
     }
 }
