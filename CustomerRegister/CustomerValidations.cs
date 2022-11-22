@@ -25,12 +25,6 @@ namespace CustomerRegister
             RuleFor(x => x.DataOfBirth).           
                 NotEmpty();
 
-            RuleFor(x => x.EmailSms).
-                NotEmpty();
-
-            RuleFor(x => x.Whatsapp).
-                NotEmpty();
-
             RuleFor(x => x.Country).
                 NotEmpty();
 
