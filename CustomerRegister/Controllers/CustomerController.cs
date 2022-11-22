@@ -23,7 +23,7 @@ namespace CustomerRegister.Controllers
                 _customerService.Add(customer);
                 return Created("Id: ", customer.Id);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentException e)
             {
                 return BadRequest(e.Message);
             }
@@ -36,7 +36,8 @@ namespace CustomerRegister.Controllers
             {
                 var response = _customerService.GetAllCustomers();
                 return Ok(response);
-            } catch (ArgumentNullException)
+            } 
+            catch
             {
                 return NoContent();
             }

@@ -16,7 +16,6 @@ namespace CustomerRegister
 
             RuleFor(x => x.Cpf).
                 NotEmpty().
-                Length(11).
                 Must(IsValidCpf).WithMessage("Por favor insira um CPF válido, este CPF está incorreto");
 
             RuleFor(x => x.Cellphone).
