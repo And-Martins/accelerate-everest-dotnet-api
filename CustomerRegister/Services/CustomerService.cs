@@ -28,11 +28,9 @@ namespace CustomerRegister
 
         public void Delete(int id)
         {
-            var selectedCustomer = GetCustomerById(id);
-            if (selectedCustomer is not null)
-            {
-                _customers.Remove(selectedCustomer);
-            }
+           var selectedCustomer = GetCustomerById(id);
+           _customers.Remove(selectedCustomer);
+
         }
 
         public IEnumerable<CustomerEntity> GetAllCustomers()
