@@ -34,12 +34,13 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                var response = _customerService.GetAllCustomers();
-                return Ok(response);
+                var listCustomers = _service.GetAll();
+                return Ok(listCustomers);
             }
-            catch
+            catch (Exception ex)
             {
-                return NoContent();
+                var exMessage = ex.InnerException?.Message ?? ex.Message;
+                return Problem(exMessage);
             }
         }
 
