@@ -34,7 +34,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                var listCustomers = _service.GetAll();
+                var listCustomers = _customerService.GetAllCustomers();
                 return Ok(listCustomers);
             }
             catch (Exception ex)
