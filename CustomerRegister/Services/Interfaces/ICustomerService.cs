@@ -9,6 +9,5 @@ namespace CustomerRegister.Repositories.Interfaces
         int Add(CustomerEntity customer);
         void Update(CustomerEntity customer);
         void Delete(int id);
-
     }
 }
