@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using System.Linq;
 
-namespace CustomerRegister
+namespace CustomerRegister.AppServices.Validators
 {
     public class CustomerValidations : AbstractValidator<CustomerEntity>
     {

@@ -1,5 +1,4 @@
-using CustomerRegister.Models;
-using System;
+using DomainModels.Entity;
 public class CustomerEntity : IEntity
 {
     public CustomerEntity(

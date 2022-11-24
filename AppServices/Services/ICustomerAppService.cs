@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CustomerRegister.Repositories.Interfaces
+namespace AppServices.Services
 {
-    public interface ICustomerService
+    public interface ICustomerAppService
     {
         IEnumerable<CustomerEntity> GetAllCustomers();
         CustomerEntity GetCustomerById(int id);

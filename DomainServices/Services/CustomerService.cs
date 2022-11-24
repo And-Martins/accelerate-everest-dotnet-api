@@ -1,10 +1,4 @@
-using CustomerRegister.Repositories.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace CustomerRegister
+namespace DomainServices.Services
 {
     public class CustomerService : ICustomerService
     {
@@ -22,10 +16,10 @@ namespace CustomerRegister
         private void CustomerUpdateValidation(CustomerEntity selectedCustomer)
         {
             if (_customers.Any(customer => customer.Id == selectedCustomer.Id && customer.Email != selectedCustomer.Email))
-                throw new ArgumentException("Este email está sendo usado por outro usuário, por favor escolha outro");
+                throw new ArgumentException("Não é possível modificar o e-mail");
 
             if (_customers.Any(customer => customer.Id == selectedCustomer.Id && customer.Cpf != selectedCustomer.Cpf))
-                throw new ArgumentException("Este CPF está sendo usado por outro usuário, por favor escolha outro");
+                throw new ArgumentException("Não é possível modificar o CPF");
         }
 
         private void CustomerIdExist(CustomerEntity selectedCustomer)
@@ -44,8 +38,8 @@ namespace CustomerRegister
 
         public void Delete(int id)
         {
-           var selectedCustomer = GetCustomerById(id);
-           _customers.Remove(selectedCustomer);
+            var selectedCustomer = GetCustomerById(id);
+            _customers.Remove(selectedCustomer);
         }
 
         public IEnumerable<CustomerEntity> GetAllCustomers()

@@ -1,4 +1,4 @@
-﻿using CustomerRegister.Repositories.Interfaces;
+﻿using DomainServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

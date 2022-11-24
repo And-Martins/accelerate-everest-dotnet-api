@@ -1,4 +1,4 @@
-﻿namespace CustomerRegister.Models
+﻿namespace DomainModels.Entity
 {
     public interface IEntity
     {

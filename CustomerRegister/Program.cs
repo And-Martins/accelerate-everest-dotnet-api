@@ -1,10 +1,11 @@
-using CustomerRegister;
-using CustomerRegister.Repositories.Interfaces;
+using CustomerRegister.AppServices.Validators;
+using DomainServices.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
