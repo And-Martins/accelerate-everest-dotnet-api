@@ -12,6 +12,9 @@ namespace CustomerRegister
 
         private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
+            if (_customers.Any(customer => customer.Id == selectedCustomer.Id))
+                throw new ArgumentException("Este id já está em uso, por favor escolha outro");
+
             if (_customers.Any(customer => customer.Email == selectedCustomer.Email))
                 throw new ArgumentException("Este email já está em uso, por favor escolha outro");
 
