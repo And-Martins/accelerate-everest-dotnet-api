@@ -12,14 +12,26 @@ namespace CustomerRegister
 
         private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
-            if (_customers.Any(customer => customer.Id == selectedCustomer.Id))
-                throw new ArgumentException("Este id já está em uso, por favor escolha outro");
-
             if (_customers.Any(customer => customer.Email == selectedCustomer.Email))
                 throw new ArgumentException("Este email já está em uso, por favor escolha outro");
 
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
+        }
+
+        private void CustomerUpdateValidation(CustomerEntity selectedCustomer)
+        {
+            if (_customers.Any(customer => customer.Id == selectedCustomer.Id && customer.Email != selectedCustomer.Email))
+                throw new ArgumentException("Este email está sendo usado por outro usuário, por favor escolha outro");
+
+            if (_customers.Any(customer => customer.Id == selectedCustomer.Id && customer.Cpf != selectedCustomer.Cpf))
+                throw new ArgumentException("Este CPF está sendo usado por outro usuário, por favor escolha outro");
+        }
+
+        private void CustomerIdExist(CustomerEntity selectedCustomer)
+        {
+            if (_customers.Any(customer => customer.Id != selectedCustomer.Id))
+                throw new ArgumentException("Este id não existe");
         }
 
         public int Add(CustomerEntity customer)
@@ -50,7 +62,7 @@ namespace CustomerRegister
         public void Update(CustomerEntity selectedCustomer)
         {
             var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
-            CustomerAlreadyExists(selectedCustomer);
+            CustomerUpdateValidation(selectedCustomer);
             _customers[index] = selectedCustomer;
         }
     }
