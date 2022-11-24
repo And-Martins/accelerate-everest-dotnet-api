@@ -12,20 +12,11 @@ namespace CustomerRegister
 
         private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
-            if (_customers.Any(customer => customer.Email == selectedCustomer.Email))
+            if (_customers.Any(customer => customer.Email == selectedCustomer.Email && customer.Id != selectedCustomer.Id))
                 throw new ArgumentException("Este email já está em uso, por favor escolha outro");
 
-            if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf))
+            if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf && customer.Id != selectedCustomer.Id))
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
-        }
-
-        private void CustomerUpdateValidation(CustomerEntity selectedCustomer)
-        {
-            if (_customers.Any(customer => customer.Id == selectedCustomer.Id && customer.Email != selectedCustomer.Email))
-                throw new ArgumentException("Não é possível modificar o e-mail");
-
-            if (_customers.Any(customer => customer.Id == selectedCustomer.Id && customer.Cpf != selectedCustomer.Cpf))
-                throw new ArgumentException("Não é possível modificar o CPF");
         }
 
         private void CustomerIdExist(CustomerEntity selectedCustomer)
@@ -62,7 +53,7 @@ namespace CustomerRegister
         public void Update(CustomerEntity selectedCustomer)
         {
             var index = _customers.IndexOf(GetCustomerById(selectedCustomer.Id));
-            CustomerUpdateValidation(selectedCustomer);
+            CustomerAlreadyExists(selectedCustomer);
             _customers[index] = selectedCustomer;
         }
     }
