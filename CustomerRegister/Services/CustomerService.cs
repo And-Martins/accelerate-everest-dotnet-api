@@ -19,12 +19,6 @@ namespace CustomerRegister
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
         }
 
-        private void CustomerIdExist(CustomerEntity selectedCustomer)
-        {
-            if (_customers.Any(customer => customer.Id != selectedCustomer.Id))
-                throw new ArgumentException("Este id não existe");
-        }
-
         public int Add(CustomerEntity customer)
         {
             CustomerAlreadyExists(customer);
