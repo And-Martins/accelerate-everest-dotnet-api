@@ -9,7 +9,7 @@
             return _customerAppService.Add(customer);
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             _customerAppService.Delete(id);
         }
