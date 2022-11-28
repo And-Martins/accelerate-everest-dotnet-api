@@ -4,7 +4,7 @@
     {
         IEnumerable<CustomerEntity> GetAllCustomers();
         CustomerEntity GetCustomerById(long id);
-        int Add(CustomerEntity customer);
+        long Add(CustomerEntity customer);
         void Update(CustomerEntity customer);
         void Delete(int id);
     }
