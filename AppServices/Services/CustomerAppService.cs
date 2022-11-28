@@ -26,7 +26,7 @@
 
         public void Update(CustomerEntity customer)
         {
-            return _customerAppService.Update(customer);
+            _customerAppService.Update(customer);
         }
     }
 }
