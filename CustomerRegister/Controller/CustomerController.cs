@@ -8,11 +8,11 @@ namespace CustomerRegister.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private readonly ICustomerService _customerService;
+        private readonly ICustomerAppService _customerAppService;
 
-        public CustomerController(ICustomerService customer)
+        public CustomerController(ICustomerAppService appService)
         {
-            _customerService = customer ?? throw new ArgumentNullException(nameof(customer));
+            _customerappService = appService ?? throw new ArgumentNullException(nameof(customer));
         }
 
         [HttpPost]
