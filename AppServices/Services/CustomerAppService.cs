@@ -1,6 +1,6 @@
 ﻿namespace AppServices.Services
 {
-    internal class CustomerAppService : ICustomerAppService
+    public class CustomerAppService : ICustomerAppService
     {
        private readonly ICustomerAppService _customerAppService;
         public int Add(CustomerEntity customer)
