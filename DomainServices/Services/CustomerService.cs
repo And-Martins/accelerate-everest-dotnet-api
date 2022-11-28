@@ -32,7 +32,7 @@ namespace DomainServices.Services
             return _customers;
         }
 
-        public CustomerEntity GetCustomerById(int id)
+        public CustomerEntity GetCustomerById(long id)
         {
             return _customers.FirstOrDefault(x => x.Id == id) ??
                 throw new ArgumentNullException($"Não foi encontrado usuário com Id : {id}");
