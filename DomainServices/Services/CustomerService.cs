@@ -7,7 +7,7 @@ namespace DomainServices.Services
         private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
             if (_customers.Any(customer => customer.Email == selectedCustomer.Email && customer.Id != selectedCustomer.Id))
-                throw new ArgumentException("Este email já está em uso, por favor escolha outro");
+                throw new ArgumentException($"Este email: {selectedCustomer.Email} já está em uso, por favor escolha outro");
 
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf && customer.Id != selectedCustomer.Id))
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
