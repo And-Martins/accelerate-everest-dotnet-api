@@ -1,4 +1,6 @@
 using DomainModels.Entity;
+using System;
+
 public class CustomerEntity : IEntity
 {
     public CustomerEntity(

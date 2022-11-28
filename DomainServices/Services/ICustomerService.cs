@@ -1,4 +1,6 @@
-﻿namespace DomainServices.Services
+﻿using System.Collections.Generic;
+
+namespace DomainServices.Services
 {
     public interface ICustomerService
     {
