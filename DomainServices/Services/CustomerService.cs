@@ -10,7 +10,7 @@ namespace DomainServices.Services
                 throw new ArgumentException($"Este email: {selectedCustomer.Email} já está em uso, por favor escolha outro");
 
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf && customer.Id != selectedCustomer.Id))
-                throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
+                throw new ArgumentException($"Este CPF: {selectedCustomer.Cpf} já está em uso, por favor escolha outro");
         }
 
         public long Add(CustomerEntity customer)
