@@ -19,7 +19,7 @@
             return _customerAppService.GetAllCustomers();
         }
 
-        public CustomerEntity GetCustomerById(int id)
+        public CustomerEntity GetCustomerById(long id)
         {
             return _customerAppService.GetCustomerById(id);
         }
