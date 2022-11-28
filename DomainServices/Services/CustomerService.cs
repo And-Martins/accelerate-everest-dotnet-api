@@ -13,7 +13,7 @@ namespace DomainServices.Services
                 throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
         }
 
-        public int Add(CustomerEntity customer)
+        public long Add(CustomerEntity customer)
         {
             CustomerAlreadyExists(customer);
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
