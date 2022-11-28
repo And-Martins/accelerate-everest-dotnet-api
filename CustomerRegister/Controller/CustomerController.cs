@@ -45,7 +45,7 @@ namespace CustomerRegister.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCustomerById(int id)
+        public IActionResult GetCustomerById(long id)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace CustomerRegister.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
             try
             {

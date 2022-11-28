@@ -1,4 +1,6 @@
-﻿namespace AppServices.Services
+﻿using System.Collections.Generic;
+
+namespace AppServices.Services
 {
     public class CustomerAppService : ICustomerAppService
     {

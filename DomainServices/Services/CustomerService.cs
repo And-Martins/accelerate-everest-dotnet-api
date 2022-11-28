@@ -21,7 +21,7 @@ namespace DomainServices.Services
             return customer.Id;
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             var selectedCustomer = GetCustomerById(id);
             _customers.Remove(selectedCustomer);
