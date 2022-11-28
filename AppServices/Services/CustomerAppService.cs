@@ -4,7 +4,7 @@
     {
        private readonly ICustomerAppService _customerAppService;
 
-        public int Add(CustomerEntity customer)
+        public long Add(CustomerEntity customer)
         {
             return _customerAppService.Add(customer);
         }
