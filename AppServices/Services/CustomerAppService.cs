@@ -1,34 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using DomainServices.Services;
+using System.Collections.Generic;
 
 namespace AppServices.Services
 {
     public class CustomerAppService : ICustomerAppService
     {
-       private readonly ICustomerAppService _customerAppService;
+       private readonly ICustomerService _customerService;
+
+        public CustomerAppService(ICustomerService customerService)
+        {
+            _customerService = customerService ?? throw new System.ArgumentNullException(nameof(customerService));
+        }
 
         public long Add(CustomerEntity customer)
         {
-            return _customerAppService.Add(customer);
+            return _customerService.Add(customer);
         }
 
         public void Delete(long id)
         {
-            _customerAppService.Delete(id);
+            _customerService.Delete(id);
         }
 
         public IEnumerable<CustomerEntity> GetAllCustomers()
         {
-            return _customerAppService.GetAllCustomers();
+            return _customerService.GetAllCustomers();
         }
 
         public CustomerEntity GetCustomerById(long id)
         {
-            return _customerAppService.GetCustomerById(id);
+            return _customerService.GetCustomerById(id);
         }
 
         public void Update(CustomerEntity customer)
         {
-            _customerAppService.Update(customer);
+            _customerService.Update(customer);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DomainServices.Services;
+﻿using AppServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -12,15 +12,15 @@ namespace CustomerRegister.Controllers
 
         public CustomerController(ICustomerAppService appService)
         {
-            _customerappService = appService ?? throw new ArgumentNullException(nameof(customer));
+            _customerAppService = appService ?? throw new ArgumentNullException(nameof(appService));
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CustomerEntity customer)
+        public IActionResult Create(CustomerEntity customer)
         {
             try
             {
-                var customerId = _customerService.Add(customer);
+                var customerId = _customerAppService.Add(customer);
                 return Created("Id: ", customerId);
             }
             catch (ArgumentException e)
@@ -34,7 +34,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                var listCustomers = _customerService.GetAllCustomers();
+                var listCustomers = _customerAppService.GetAllCustomers();
                 return Ok(listCustomers);
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                return Ok(_customerService.GetCustomerById(id));
+                return Ok(_customerAppService.GetCustomerById(id));
             }
             catch (ArgumentNullException e)
             {
@@ -62,7 +62,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.Update(selectedCustomer);
+                _customerAppService.Update(selectedCustomer);
                 return Ok();
             }
             catch (ArgumentNullException e)
@@ -80,7 +80,7 @@ namespace CustomerRegister.Controllers
         {
             try
             {
-                _customerService.Delete(id);
+                _customerAppService.Delete(id);
                 return NoContent();
             }
             catch (ArgumentNullException e)
