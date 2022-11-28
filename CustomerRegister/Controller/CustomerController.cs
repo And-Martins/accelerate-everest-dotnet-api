@@ -23,7 +23,7 @@ namespace CustomerRegister.Controllers
                 var customerId = _customerAppService.Add(customer);
                 return Created("Id: ", customerId);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 var exMessage = ex.InnerException?.Message ?? ex.Message;
                 return BadRequest(exMessage);
@@ -52,7 +52,7 @@ namespace CustomerRegister.Controllers
             {
                 return Ok(_customerAppService.GetCustomerById(id));
             }
-            catch (Exception ex)
+            catch (ArgumentNullException ex)
             {
                 var exMessage = ex.InnerException?.Message ?? ex.Message;
                 return NotFound(exMessage);
@@ -69,9 +69,10 @@ namespace CustomerRegister.Controllers
             }
             catch (ArgumentNullException e)
             {
+                var eMessage = e.InnerException?.Message ?? e.Message;
                 return NotFound(e.Message);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 var exMessage = ex.InnerException?.Message ?? ex.Message;
                 return BadRequest(exMessage);
@@ -86,7 +87,7 @@ namespace CustomerRegister.Controllers
                 _customerAppService.Delete(id);
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (ArgumentNullException ex)
             {
                 var exMessage = ex.InnerException?.Message ?? ex.Message;
                 return NotFound(exMessage);
