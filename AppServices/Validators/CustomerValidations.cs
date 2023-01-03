@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
+using System;
 using System.Linq;
 
-namespace CustomerRegister
+namespace CustomerRegister.AppServices.Validators
 {
     public class CustomerValidations : AbstractValidator<CustomerEntity>
     {
@@ -17,17 +18,19 @@ namespace CustomerRegister
 
             RuleFor(x => x.Cpf).
                 NotEmpty().
-                Must(IsValidCpf).WithMessage("Por favor insira um CPF válido, este CPF está incorreto");
+                Must(IsValidCpf).WithMessage("O CPF inserido está incorreto. Por favor, insira um CPF válido no formato 000.000.000-00");
 
             RuleFor(x => x.Cellphone).
                 NotEmpty();
 
-            RuleFor(x => x.DataOfBirth).
-                NotEmpty();
+            RuleFor(x => x.DataOfBirth.AddYears(18))
+                .LessThan(DateTime.Now)
+                .WithMessage("Necessário ter mais de 18 anos para se cadastrar")
+                .NotEmpty();
 
             RuleFor(x => x.Country).
                 NotEmpty();
-
+            
             RuleFor(x => x.City).
                 NotEmpty();
 

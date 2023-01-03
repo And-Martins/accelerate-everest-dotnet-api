@@ -1,5 +1,6 @@
-using CustomerRegister.Models;
+using DomainModels.Entity;
 using System;
+
 public class CustomerEntity : IEntity
 {
     public CustomerEntity(
@@ -46,5 +47,5 @@ public class CustomerEntity : IEntity
     public string PostalCode { get; set; }
     public string Address { get; set; }
     public int AddressNumber { get; set; }
-    public int Id { get; set; }
+    public long Id { get; set; }
 }

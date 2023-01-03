@@ -1,10 +1,8 @@
-using CustomerRegister.Repositories.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CustomerRegister
+namespace DomainServices.Services
 {
     public class CustomerService : ICustomerService
     {
@@ -13,13 +11,13 @@ namespace CustomerRegister
         private void CustomerAlreadyExists(CustomerEntity selectedCustomer)
         {
             if (_customers.Any(customer => customer.Email == selectedCustomer.Email && customer.Id != selectedCustomer.Id))
-                throw new ArgumentException("Este email já está em uso, por favor escolha outro");
+                throw new ArgumentException($"Este email: {selectedCustomer.Email} já está em uso, por favor escolha outro");
 
             if (_customers.Any(customer => customer.Cpf == selectedCustomer.Cpf && customer.Id != selectedCustomer.Id))
-                throw new ArgumentException("Este CPF já está em uso, por favor escolha outro");
+                throw new ArgumentException($"Este CPF: {selectedCustomer.Cpf} já está em uso, por favor escolha outro");
         }
 
-        public int Add(CustomerEntity customer)
+        public long Add(CustomerEntity customer)
         {
             CustomerAlreadyExists(customer);
             customer.Id = _customers.LastOrDefault()?.Id + 1 ?? 1;
@@ -27,10 +25,10 @@ namespace CustomerRegister
             return customer.Id;
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
-           var selectedCustomer = GetCustomerById(id);
-           _customers.Remove(selectedCustomer);
+            var selectedCustomer = GetCustomerById(id);
+            _customers.Remove(selectedCustomer);
         }
 
         public IEnumerable<CustomerEntity> GetAllCustomers()
@@ -38,7 +36,7 @@ namespace CustomerRegister
             return _customers;
         }
 
-        public CustomerEntity GetCustomerById(int id)
+        public CustomerEntity GetCustomerById(long id)
         {
             return _customers.FirstOrDefault(x => x.Id == id) ??
                 throw new ArgumentNullException($"Não foi encontrado usuário com Id : {id}");

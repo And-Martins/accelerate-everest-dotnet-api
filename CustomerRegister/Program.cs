@@ -1,5 +1,6 @@
-using CustomerRegister;
-using CustomerRegister.Repositories.Interfaces;
+using AppServices.Services;
+using CustomerRegister.AppServices.Validators;
+using DomainServices.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ICustomerService, CustomerService>();
+builder.Services.AddTransient<ICustomerAppService, CustomerAppService>();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddScoped<IValidator<CustomerEntity>, CustomerValidations>();
 var app = builder.Build();
